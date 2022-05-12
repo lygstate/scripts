@@ -10,7 +10,7 @@
 # License: https://github.com/getredash/redash/blob/master/LICENSE
 
 DIR=/tmp
-VERSION=3.6.6
+VERSION=3.6.15
 URL="https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tgz"
 TARBALL=/tmp/Python-${VERSION}.tgz
 
