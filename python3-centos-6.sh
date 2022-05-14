@@ -38,7 +38,6 @@ check_python_version() {
 }
 
 install_system_packages() {
-    yum -y install gcc openssl-devel bzip2-devel
 }
 
 extract_python_source() {
