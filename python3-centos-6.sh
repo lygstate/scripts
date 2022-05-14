@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# This script setups Python 3.6 alternate installation
+# This script setups Python 3.9 alternate installation
 # on CentOS 6
 # Usage: wget -O python3-centos-6.sh https://raw.githubusercontent.com/vinodpandey/scripts/master/python3-centos-6.sh
 # chmod +x python3-centos-6.sh
