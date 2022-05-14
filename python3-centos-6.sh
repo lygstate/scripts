@@ -10,7 +10,7 @@
 # License: https://github.com/getredash/redash/blob/master/LICENSE
 
 DIR=/tmp
-VERSION=3.6.15
+VERSION=3.9.12
 URL="https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tgz"
 TARBALL=/tmp/Python-${VERSION}.tgz
 
@@ -30,8 +30,8 @@ verify_root() {
 }
 
 check_python_version() {
-    if [[ $(/usr/local/bin/python3.6 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))') == 3.6.* ]]; then
-    	SYS_VERSION=$(/usr/local/bin/python3.6 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))')
+    if [[ $(/usr/local/bin/python3.9 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))') == 3.9.* ]]; then
+    	SYS_VERSION=$(/usr/local/bin/python3.9 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))')
     	echo Python $SYS_VERSION already installed
     	exit 1
     fi
