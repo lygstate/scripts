@@ -17,6 +17,6 @@ rm -rf ninja-1.11.0
 tar xf ninja.tar.gz
 mkdir ninja-1.11.0/build
 pushd ninja-1.11.0/build
-cmake ..
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr
 make -j$(nproc) install
 popd
