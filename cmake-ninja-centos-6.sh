@@ -3,6 +3,7 @@
 # This script setups cmake and ninja
 
 pushd /tmp
+yum install -y gcc gcc-c++
 
 if [[ ! -f "cmake-3.23.1-linux-x86_64.sh" ]]; then
     wget --no-check-certificate https://github.com/Kitware/CMake/releases/download/v3.23.1/cmake-3.23.1-linux-x86_64.sh -O cmake-3.23.1-linux-x86_64.sh
