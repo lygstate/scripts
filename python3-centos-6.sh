@@ -30,8 +30,8 @@ verify_root() {
 }
 
 check_python_version() {
-    if [[ $(/usr/local/bin/python3.10 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))') == 3.10.* ]]; then
-    	SYS_VERSION=$(/usr/local/bin/python3.10 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))')
+    if [[ $(/usr/bin/python3.10 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))') == 3.10.* ]]; then
+    	SYS_VERSION=$(/usr/bin/python3.10 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))')
     	echo Python $SYS_VERSION already installed
     	exit 1
     fi
