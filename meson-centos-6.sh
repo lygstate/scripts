@@ -7,6 +7,7 @@ ln -s /usr/bin/python3.10 /usr/bin/python3
 sudo ls
 sudo rm -rf /var/cache/yum/*
 sudo yum clean all
+sudo yum update
 
 # Install clang
 sudo tar xf llvm-install.tar.xz -C /usr
@@ -54,7 +55,7 @@ ninja
 sudo ninja install
 
 # For mesa
-sudo yum install -y flex bison libXrandr-devel xorg-x11-server-devel xorg-x11-server-Xorg pixman-devel
+sudo yum install -y flex bison pixman-devel libXrandr-devel xorg-x11-server-devel xorg-x11-server-Xorg
 sudo yum install -y libxshmfence-devel
 # Build mesa
 git clone https://gitlab.freedesktop.org/mesa/mesa.git mesa
@@ -62,3 +63,7 @@ CC=clang CXX=clang++ meson --prefix=/usr -D llvm=enabled -Dshared-llvm=disabled
 
 # xf86-video-amdgpu
 sudo yum install -y xorg-x11-util-macros
+ ./autogen.sh --prefix=/usr
+ make
+ sudo make install
+ 
