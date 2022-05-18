@@ -1,7 +1,7 @@
-sudo su
-pip3 install meson mako
-rm -f /usr/bin/python3
-ln -s /usr/bin/python3.10 /usr/bin/python3
+sudo ls
+sudo rm -f /usr/bin/python3
+sudo ln -s /usr/bin/python3.10 /usr/bin/python3
+sudo pip3 install meson mako
 
 # Reset yum cache
 sudo ls
@@ -30,6 +30,7 @@ pushd drm/build
 CC=clang CXX=clang++ meson --prefix=/usr
 ninja
 sudo ninja install
+popd
 
 # For wayland
 sudo yum install -y libxml2-devel libffi-devel expat-devel
@@ -60,6 +61,7 @@ git reset --hard sdk-1.3.211.0
 CC=clang CXX=clang++  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -GNinja
 ninja
 sudo ninja install
+popd
 
 # For mesa
 sudo yum install -y flex bison pixman-devel xorg-x11-server-devel xorg-x11-server-Xorg libxshmfence-devel libXrandr-devel
@@ -79,7 +81,7 @@ CC=clang CXX=clang++ meson --prefix=/usr \
 -D dri3=enabled \
 -D gallium-extra-hud=true \
 -D gallium-vdpau=enabled \
--D gallium-va=enabled \
+-D gallium-va=disabled \
 -D gallium-xa=enabled
 
 # xf86-video-amdgpu
