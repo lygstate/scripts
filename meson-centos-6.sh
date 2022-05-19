@@ -116,6 +116,8 @@ CC=clang CXX=clang++ meson --prefix=/usr \
 -D c_link_args="--for-linker --threads=64" \
 -D cpp_link_args="--for-linker --threads=64"
 
+DESTDIR=~/work/mesa-install ninja install
+
 # clang++ -v --for-linker --threads=64 test.cpp -o test
 # ps af | cat 
 
