@@ -113,9 +113,10 @@ CC=clang CXX=clang++ meson --prefix=/usr \
 -D osmesa=true \
 -D buildtype=release \
 -D b_lto=true \
--D c_link_arg="--for-linker=--threads=64" \
--D cpp_link_arg="--for-linker=--threads=64"
+-D c_link_args="--for-linker --threads=64" \
+-D cpp_link_args="--for-linker --threads=64"
 
+# clang++ -v --for-linker --threads=64 test.cpp -o test
 # ps af | cat 
 
 ninja
