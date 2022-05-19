@@ -110,7 +110,16 @@ CC=clang CXX=clang++ meson --prefix=/usr \
 -D gallium-va=enabled \
 -D gallium-xa=enabled \
 -D gallium-omx=bellagio \
--D osmesa=true
+-D osmesa=true \
+-D buildtype=release \
+-D b_lto=true \
+-D c_link_arg="--for-linker=--threads=64" \
+-D cpp_link_arg="--for-linker=--threads=64"
+
+# ps af | cat 
+
+ninja
+sudo ninja install
 popd
 
 # xf86-video-amdgpu
@@ -120,3 +129,5 @@ make
 sudo make install
 
 export DISPLAY=":0.0"
+vblank_mode=0 glxinfo
+vblank_mode=0 glxgears
