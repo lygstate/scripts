@@ -129,8 +129,13 @@ ninja
 sudo ninja install
 popd
 
+# For xf86-video-amdgpu
+sudo yum install -y mesa-libgbm-devel
+
 # xf86-video-amdgpu
-sudo yum install -y xorg-x11-util-macros
+git clone https://gitlab.freedesktop.org/xorg/driver/xf86-video-amdgpu.git xf86-video-amdgpu
+pushd xf86-video-amdgpu
+git reset --hard xf86-video-amdgpu-22.0.0
  ./autogen.sh --prefix=/usr
 make
 sudo make install
@@ -141,6 +146,8 @@ vblank_mode=0 glxgears
 
 
 # Restart journal
+sudo cat /var/log/messages 
+sudo cat /var/log/Xorg.0.log
 dmesg
 sudo find /var/log/journal -name "*.journal" | xargs sudo rm 
 sudo systemctl restart systemd-journald
