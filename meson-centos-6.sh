@@ -139,6 +139,7 @@ git reset --hard xf86-video-amdgpu-22.0.0
  ./autogen.sh --prefix=/usr
 make
 sudo make install
+popd
 
 export DISPLAY=":0.0"
 vblank_mode=0 glxinfo
