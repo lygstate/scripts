@@ -138,3 +138,9 @@ sudo make install
 export DISPLAY=":0.0"
 vblank_mode=0 glxinfo
 vblank_mode=0 glxgears
+
+
+# Restart journal
+dmesg
+sudo find /var/log/journal -name "*.journal" | xargs sudo rm 
+sudo systemctl restart systemd-journald
