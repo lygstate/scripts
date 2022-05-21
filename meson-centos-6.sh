@@ -1,13 +1,16 @@
+sudo rm -f /usr/bin/python3.10
+sudo rm -rf /tmp/*
+sudo bash python3-centos-6.sh
+
 sudo ls
 sudo rm -f /usr/bin/python3
 sudo ln -s /usr/bin/python3.10 /usr/bin/python3
 sudo pip3 install meson mako
 
+sudo bash cmake-ninja-centos-6.sh
+
 # Reset yum cache
 sudo ls
-
-# Wait password
-
 sudo rm -rf /var/cache/yum/*
 sudo yum clean all
 sudo yum update 1>out.txt 2>err.txt
@@ -42,7 +45,7 @@ sudo yum install -y libxml2-devel xz-devel libffi-devel expat-devel
 
 # Build wayland
 git clone https://gitlab.freedesktop.org/wayland/wayland wayland
-rm -rf wayland/build 
+rm -rf wayland/build
 mkdir wayland/build
 pushd wayland/build
 git reset --hard 1.20.0
@@ -53,7 +56,7 @@ popd
 
 # Build wayland-protocols
 git clone https://gitlab.freedesktop.org/wayland/wayland-protocols.git wayland-protocols
-rm -rf wayland-protocols/build 
+rm -rf wayland-protocols/build
 mkdir wayland-protocols/build
 pushd wayland-protocols/build
 git reset --hard 1.25
@@ -90,16 +93,17 @@ popd
 sudo yum install -y flex bison \
     pixman-devel \
     xorg-x11-server-devel xorg-x11-server-Xorg libxshmfence-devel libXrandr-devel \
-    libvdpau-devel libXvMC-devel libXv-devel libomxil-bellagio-devel
+    libvdpau-devel libXvMC-devel libXv-devel libomxil-bellagio-devel elfutils-libelf-devel
+
 
 # Build mesa
-git clone https://gitlab.freedesktop.org/mesa/mesa.git mesa
+git clone https://gitlab.freedesktop.org/lygstate/mesa.git mesa
 mkdir -p mesa/build
 pushd mesa/build
-git reset --hard mesa-22.0.3
+git checkout origin/22.0 
 CC=clang CXX=clang++ meson --prefix=/usr \
 -D llvm=enabled \
--Dshared-llvm=disabled \
+-Dshared-llvm=enabled \
 -D glx=dri \
 -D gbm=enabled \
 -D egl=enabled \
@@ -113,8 +117,7 @@ CC=clang CXX=clang++ meson --prefix=/usr \
 -D osmesa=true \
 -D buildtype=release \
 -D b_lto=true \
--D c_link_args="--for-linker --threads=64" \
--D cpp_link_args="--for-linker --threads=64"
+-D b_lto_mode=thin
 
 DESTDIR=~/work/mesa-install ninja install
 cd ~/work/mesa-install/usr
@@ -147,7 +150,7 @@ vblank_mode=0 glxgears
 
 
 # Restart journal
-sudo cat /var/log/messages 
+sudo cat /var/log/messages
 sudo cat /var/log/Xorg.0.log
 dmesg
 sudo find /var/log/journal -name "*.journal" | xargs sudo rm 
