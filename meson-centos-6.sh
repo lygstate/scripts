@@ -32,7 +32,8 @@ git clone https://gitlab.freedesktop.org/mesa/drm.git drm
 rm -rf drm/build 
 mkdir drm/build
 pushd drm/build
-git reset --hard libdrm-2.4.109
+# git reset --hard libdrm-2.4.109
+git reset --hard libdrm-2.4.110
 CC=clang CXX=clang++ meson --prefix=/usr
 ninja
 sudo ninja install
@@ -100,7 +101,7 @@ sudo yum install -y flex bison \
 git clone https://gitlab.freedesktop.org/lygstate/mesa.git mesa
 mkdir -p mesa/build
 pushd mesa/build
-git checkout origin/22.0 
+git checkout origin/22.1 
 CC=clang CXX=clang++ meson --prefix=/usr \
 -D llvm=enabled \
 -Dshared-llvm=enabled \
@@ -144,6 +145,21 @@ make
 sudo make install
 popd
 
+sudo yum install -y xorg-x11-xtrans-devel libxkbfile-devel libXfont2-devel \
+    nettle-devel libxkbcommon-devel libepoxy-devel libXdmcp-devel libinput-devel \
+    libtirpc-devel dbus-devel
+
+# Building X Server
+# https://gitlab.freedesktop.org/xorg/xserver
+rm -rf xserver/build
+mkdir xserver/build
+pushd xserver/build
+git reset --hard xorg-server-1.20.14
+CC=clang CXX=clang++ meson --prefix=/usr
+ninja
+sudo ninja install
+popd
+
 export DISPLAY=":0.0"
 vblank_mode=0 glxinfo
 vblank_mode=0 glxgears
@@ -155,3 +171,4 @@ sudo cat /var/log/Xorg.0.log
 dmesg
 sudo find /var/log/journal -name "*.journal" | xargs sudo rm 
 sudo systemctl restart systemd-journald
+journalctl -b -1
