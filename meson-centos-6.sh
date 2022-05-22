@@ -174,7 +174,8 @@ CC=clang CXX=clang++ meson --prefix=/usr \
 -D osmesa=true \
 -D buildtype=release \
 -D b_lto=true \
--D b_lto_mode=thin
+-D b_lto_mode=thin \
+-D vulkan-drivers=intel,amd,freedreno,broadcom,virtio-experimental,swrast,panfrost,imagination-experimental
 
 DESTDIR=~/work/mesa-install ninja install
 cd ~/work/mesa-install/usr
