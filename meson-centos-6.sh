@@ -161,10 +161,10 @@ sudo ninja install
 popd
 
 export DISPLAY=":0.0"
-vblank_mode=0 glxinfo
+vblank_mode=0 glxinfo | grep renderer
 vblank_mode=0 glxgears
 export LIBGL_ALWAYS_SOFTWARE=true
-vblank_mode=0 glxinfo
+vblank_mode=0 glxinfo | grep renderer
 vblank_mode=0 glxgears
 
 # Restart journal
