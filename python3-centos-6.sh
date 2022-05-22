@@ -45,7 +45,7 @@ install_openssl() {
     # https://bugs.python.org/issue43466
     rm -rf openssl-1.1.1n
     if [[ ! -f "openssl-1.1.1n.tar.gz" ]]; then
-        wget --no-check-certificate https://www.openssl.org/source/old/1.1.1/openssl-1.1.1n.tar.gz -O openssl-1.1.1n.tar.gz
+        curl -LJO https://www.openssl.org/source/old/1.1.1/openssl-1.1.1n.tar.gz
     fi
     tar xf openssl-1.1.1n.tar.gz && \
     pushd openssl-1.1.1n && \
@@ -56,7 +56,7 @@ install_openssl() {
 
 extract_python_source() {
     if [[ ! -f "$TARBALL" ]]; then
-        wget --no-check-certificate "$URL" -O "$TARBALL"
+        curl -LJO "$URL"
     fi
     rm -rf Python-${VERSION}
     tar -C "$DIR" -xvf "$TARBALL"
