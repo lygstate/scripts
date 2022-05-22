@@ -147,7 +147,8 @@ popd
 sudo yum install -y flex bison \
     pixman-devel \
     xorg-x11-server-devel xorg-x11-server-Xorg libxshmfence-devel libXrandr-devel \
-    libvdpau-devel libXvMC-devel libXv-devel libomxil-bellagio-devel elfutils-libelf-devel
+    libvdpau-devel libXvMC-devel libXv-devel libomxil-bellagio-devel elfutils-libelf-devel \
+    ncurses-devel libarchive-devel libconfig-devel
 
 # Build mesa
 git clone https://gitlab.freedesktop.org/lygstate/mesa.git mesa
