@@ -42,12 +42,13 @@ install_system_packages() {
 }
 
 install_openssl() {
+    echo "Building openssl"
     # https://bugs.python.org/issue43466
     rm -rf openssl-1.1.1n
     if [[ ! -f "openssl-1.1.1n.tar.gz" ]]; then
-        wget https://www.openssl.org/source/old/1.1.1/openssl-1.1.1n.tar.gz -O openssl-1.1.1n.tar.gz
+        wget --no-check-certificate https://www.openssl.org/source/old/1.1.1/openssl-1.1.1n.tar.gz -O openssl-1.1.1n.tar.gz
     fi
-    tar xf openssl-1.1.1n.tar.gz && \
+    tar xvf openssl-1.1.1n.tar.gz && \
     pushd openssl-1.1.1n && \
         ./config --prefix=/opt/openssl \
         --openssldir=$(find /etc/ -name openssl.cnf -printf "%h" 2>/dev/null) &&
@@ -56,7 +57,7 @@ install_openssl() {
 
 extract_python_source() {
     if [[ ! -f "$TARBALL" ]]; then
-        wget "$URL" -O "$TARBALL"
+        wget --no-check-certificate "$URL" -O "$TARBALL"
     fi
     rm -rf Python-${VERSION}
     tar -C "$DIR" -xvf "$TARBALL"
